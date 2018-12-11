@@ -37,6 +37,9 @@
 #include <pta_secstor_ta_mgmt.h>
 #endif
 
+#include <time.h>
+
+
 #ifndef MIN
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #endif
@@ -485,6 +488,11 @@ static void xtest_tee_test_invalid_mem_access2(ADBG_Case_t *c, unsigned int n,
 	TEEC_Operation op = TEEC_OPERATION_INITIALIZER;
 	uint32_t ret_orig;
 	TEEC_SharedMemory shm;
+
+	struct timespec tp_base;
+    struct timespec tp_init;
+    long diff;
+
 
 	memset(&shm, 0, sizeof(shm));
 	shm.size = size;
